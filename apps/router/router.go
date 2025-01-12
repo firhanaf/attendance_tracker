@@ -13,4 +13,7 @@ func InitRouter(db *gorm.DB, c *fiber.App) {
 	attendanceService := service.New(attendanceData)
 	attendanceHandlerAPI := handler.New(attendanceService)
 	c.Post("/attend", attendanceHandlerAPI.CreateAttendance)
+	c.Post("/:user_id/checkout", attendanceHandlerAPI.UpdateAttendance)
+	c.Get("/attendances", attendanceHandlerAPI.GetAll)
+	c.Get("/export", attendanceHandlerAPI.Export)
 }

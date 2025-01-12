@@ -7,6 +7,7 @@ import (
 
 type Attendances struct {
 	gorm.Model
+	UserID     string
 	Date       string
 	Checkin    string
 	Checkout   string
@@ -15,9 +16,10 @@ type Attendances struct {
 
 func AttendanceCoreToModel(input attendances.AttendanceCore) Attendances {
 	return Attendances{
+		UserID:     input.UserID,
 		Date:       input.Date,
 		Checkin:    input.Checkin,
 		Checkout:   input.Checkout,
-		IsCheckout: false,
+		IsCheckout: input.IsCheckout,
 	}
 }
